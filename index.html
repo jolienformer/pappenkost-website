@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theater Pappenkost</title>
+<meta name="description" content="Poppenkasttheater op locatie — zelfgemaakte poppen, festivals, scholen, evenementen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,900;1,9..144,300;1,9..144,900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#F0EBE1;--ink:#0E0C09;--rust:#B84032;--sand:#D4B896;
+  --smoke:#C8C0B4;--dim:#7A7268;--paper:#F8F4EE;--dark:#1A1510;
+  --fh:'Fraunces',Georgia,serif;--fb:'Space Grotesk',system-ui,sans-serif
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:15px;line-height:1.6;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 44px;height:54px;display:flex;align-items:center;justify-content:space-between;transition:background .35s,border-color .35s;border-bottom:1px solid transparent}
+nav.solid{background:rgba(240,235,225,.95);backdrop-filter:blur(10px);border-color:rgba(14,12,9,.08)}
+.nav-brand{font-family:var(--fb);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .18s}
+.nav-links a:hover{color:var(--rust)}
+
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;background:var(--dark)}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:.62;mix-blend-mode:luminosity}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(14,12,9,.85) 0%,rgba(14,12,9,.2) 55%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:0 52px;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:0}
+.hero-overline{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);margin-bottom:20px}
+.hero-title{font-family:var(--fh);font-size:clamp(72px,12vw,164px);font-weight:900;line-height:.88;letter-spacing:-.04em;color:var(--paper)}
+.hero-title em{font-style:italic;font-weight:300;color:var(--sand);display:block}
+.hero-bar{position:relative;z-index:2;padding:36px 52px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(240,235,225,.1);gap:32px;flex-wrap:wrap;margin-top:36px}
+.hero-tagline{font-size:14px;color:rgba(240,235,225,.5);font-weight:300;max-width:360px;line-height:1.6}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--fb);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .18s}
+.btn-fill{background:var(--rust);color:#fff;padding:14px 28px}
+.btn-fill:hover{background:#922c1f}
+.btn-line{border:1px solid rgba(240,235,225,.28);color:rgba(240,235,225,.65);padding:14px 20px}
+.btn-line:hover{border-color:var(--sand);color:var(--sand)}
+
+.stats{background:var(--rust);display:grid;grid-template-columns:repeat(3,1fr)}
+.stat{padding:26px 36px;border-right:1px solid rgba(255,255,255,.1)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--fh);font-size:46px;font-weight:900;color:#fff;line-height:1;letter-spacing:-.03em}
+.stat-l{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.48);margin-top:3px}
+
+#voorstellingen{background:var(--bg)}
+.shows-head{padding:80px 52px 52px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;border-bottom:1px solid rgba(14,12,9,.07)}
+.kicker{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.shows-head h2{font-family:var(--fh);font-size:clamp(36px,5vw,64px);font-weight:900;line-height:.95;letter-spacing:-.03em}
+.shows-head h2 em{font-style:italic;font-weight:300;color:var(--rust)}
+.shows-head-note{font-size:13px;color:var(--dim);max-width:240px;text-align:right;font-weight:300;line-height:1.6}
+.shows-grid{display:grid;grid-template-columns:1fr 1fr}
+.show-item{border-right:1px solid rgba(14,12,9,.07);display:flex;flex-direction:column;overflow:hidden;background:var(--bg);transition:background .25s}
+.show-item:last-child{border-right:none}
+.show-item:hover{background:#EAE4D8}
+.show-photo{height:400px;overflow:hidden;position:relative;flex-shrink:0;background:var(--dark)}
+.show-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:contrast(1.06) saturate(.92);transition:transform .7s ease}
+.show-item:hover .show-photo img{transform:scale(1.04)}
+.show-num{position:absolute;top:18px;left:18px;z-index:2;font-family:var(--fh);font-size:11px;font-weight:900;letter-spacing:.1em;color:rgba(255,255,255,.55);background:rgba(14,12,9,.45);backdrop-filter:blur(4px);padding:3px 10px}
+.show-body{padding:40px 48px 48px;flex:1}
+.show-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:var(--ink);color:var(--bg);padding:4px 10px;margin-bottom:16px}
+.show-body h3{font-family:var(--fh);font-size:28px;font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:10px}
+.show-body h3 em{font-style:italic;font-weight:300;color:var(--rust)}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.chip{font-size:10px;font-weight:500;letter-spacing:.07em;color:var(--dim);border:1px solid var(--smoke);padding:3px 9px}
+.show-body p{font-size:14px;color:var(--dim);line-height:1.75;font-weight:300}
+
+.band{display:grid;grid-template-columns:5fr 3fr 4fr;height:320px;gap:3px;background:var(--dark)}
+.band figure{margin:0;overflow:hidden;position:relative}
+.band figure img{width:100%;height:100%;object-fit:cover;filter:contrast(1.08) saturate(.85) brightness(.88);transition:transform .65s ease,filter .4s}
+.band figure:hover img{transform:scale(1.06);filter:contrast(1.02) saturate(1) brightness(1)}
+.band-label{position:absolute;bottom:14px;left:14px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+.coming{background:var(--ink);color:var(--paper);padding:64px 52px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.coming-title{font-family:var(--fh);font-size:52px;font-weight:900;font-style:italic;color:var(--sand);line-height:1;margin-bottom:14px}
+.coming p{font-size:14px;color:rgba(248,244,238,.48);font-weight:300;line-height:1.7;max-width:480px}
+.coming-links{display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap}
+
+#speeldata{background:var(--paper)}
+.agenda-head{padding:72px 52px 52px;border-bottom:1px solid rgba(14,12,9,.07)}
+.agenda-head h2{font-family:var(--fh);font-size:clamp(36px,5vw,64px);font-weight:900;line-height:.95;letter-spacing:-.03em;margin-top:10px}
+.agenda-head h2 em{font-style:italic;font-weight:300;color:var(--rust)}
+.ag-row{display:grid;grid-template-columns:100px 1fr auto;align-items:center;gap:28px;padding:22px 52px;border-bottom:1px solid rgba(14,12,9,.06);transition:background .16s}
+.ag-row:hover{background:rgba(14,12,9,.022)}
+.ag-d{font-family:var(--fh);font-size:36px;font-weight:900;line-height:1;letter-spacing:-.02em}
+.ag-m{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.ag-info h4{font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:2px}
+.ag-info p{font-size:12px;color:var(--dim)}
+.ag-badge{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;white-space:nowrap}
+.ag-badge.now{background:var(--rust);color:#fff}
+.ag-badge.plan{border:1px solid var(--smoke);color:var(--dim)}
+.ag-badge.tbd{color:var(--smoke)}
+
+#over{background:var(--dark)}
+.over-layout{display:grid;grid-template-columns:1fr 1fr;min-height:580px}
+.over-img{position:relative;overflow:hidden;background:#0e0c09}
+.over-img img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(20%) sepia(15%);opacity:.72;transition:transform .7s ease}
+.over-img:hover img{transform:scale(1.03)}
+.over-caption{position:absolute;bottom:0;left:0;right:0;padding:56px 40px 36px;background:linear-gradient(to top,rgba(14,12,9,.88),transparent)}
+.over-caption p{font-family:var(--fh);font-size:20px;font-style:italic;font-weight:300;color:var(--sand);line-height:1.45}
+.over-text{padding:64px 56px;display:flex;flex-direction:column;justify-content:center;color:var(--paper)}
+.over-text .kicker{color:var(--sand);margin-bottom:14px}
+.over-text h2{font-family:var(--fh);font-size:42px;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:28px}
+.over-text h2 em{font-style:italic;font-weight:300;color:var(--sand)}
+.over-text p{font-size:14px;color:rgba(248,244,238,.52);font-weight:300;line-height:1.8;margin-bottom:14px}
+.over-text p strong{font-weight:700;color:rgba(248,244,238,.82)}
+.over-link{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sand);text-decoration:none;border-bottom:1px solid rgba(212,184,150,.3);padding-bottom:2px;display:inline-block;margin-top:4px;transition:border-color .18s}
+.over-link:hover{border-color:var(--sand)}
+.team-strip{border-top:1px solid rgba(255,255,255,.06);display:flex;flex-wrap:wrap}
+.tm{padding:18px 28px;border-right:1px solid rgba(255,255,255,.06);flex:1;min-width:140px}
+.tm:last-child{border-right:none}
+.tm-name{font-size:13px;font-weight:700;color:rgba(248,244,238,.75);margin-bottom:2px}
+.tm-role{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);opacity:.65}
+
+.maak{background:var(--bg);display:grid;grid-template-columns:1fr 1fr;min-height:460px}
+.maak-img{position:relative;overflow:hidden}
+.maak-img img{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(.9);transition:transform .7s ease}
+.maak-img:hover img{transform:scale(1.03)}
+.maak-text{padding:72px 56px;display:flex;flex-direction:column;justify-content:center;border-left:1px solid rgba(14,12,9,.07)}
+.maak-text .kicker{margin-bottom:12px}
+.maak-text h2{font-family:var(--fh);font-size:42px;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:24px}
+.maak-text h2 em{font-style:italic;font-weight:300;color:var(--rust)}
+.maak-text p{font-size:14px;color:var(--dim);line-height:1.8;font-weight:300;margin-bottom:14px}
+.maak-text a{color:var(--ink);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(14,12,9,.2);padding-bottom:2px;display:inline-block;margin-top:6px;transition:border-color .18s}
+.maak-text a:hover{border-color:var(--ink)}
+
+#boeken{background:var(--paper)}
+.boeken-layout{display:grid;grid-template-columns:1fr 1fr}
+.req-side{padding:72px 56px 72px 52px;border-right:1px solid rgba(14,12,9,.07)}
+.req-side h2{font-family:var(--fh);font-size:42px;font-weight:900;letter-spacing:-.03em;line-height:1;margin:10px 0 36px}
+.req-side h2 em{font-style:italic;font-weight:300;color:var(--rust)}
+.req-list{list-style:none}
+.req-list li{display:flex;gap:14px;align-items:flex-start;padding:17px 0;border-bottom:1px solid rgba(14,12,9,.06);font-size:13px;color:var(--dim);font-weight:300}
+.req-list li:first-child{border-top:1px solid rgba(14,12,9,.06)}
+.req-ico{font-size:17px;flex-shrink:0;margin-top:-1px}
+.req-list strong{font-weight:700;color:var(--ink);display:block;margin-bottom:1px;font-size:14px}
+.contact-side{padding:72px 52px 72px 56px;display:flex;flex-direction:column;justify-content:center}
+.contact-side h2{font-family:var(--fh);font-size:42px;font-weight:900;letter-spacing:-.03em;line-height:1;margin:10px 0 14px}
+.contact-side h2 em{font-style:italic;font-weight:300;color:var(--rust)}
+.contact-side>p{font-size:14px;color:var(--dim);margin-bottom:32px;font-weight:300;line-height:1.7}
+.btn-dark{background:var(--ink);color:var(--paper);padding:16px 32px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:background .18s}
+.btn-dark:hover{background:var(--rust)}
+.soc-grid{margin-top:24px;display:flex;gap:8px;flex-wrap:wrap}
+.soc-btn{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border:1px solid var(--smoke);padding:9px 14px;text-decoration:none;display:flex;align-items:center;gap:7px;transition:all .18s}
+.soc-btn:hover{border-color:var(--ink);color:var(--ink)}
+
+footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:11px}
+.foot-brand{font-family:var(--fh);font-size:15px;font-style:italic;font-weight:300;color:rgba(248,244,238,.35)}
+.foot-nav{display:flex;gap:24px;list-style:none}
+.foot-nav a{color:rgba(248,244,238,.2);text-decoration:none;font-size:10px;letter-spacing:.1em;text-transform:uppercase;transition:color .18s}
+.foot-nav a:hover{color:var(--sand)}
+.foot-copy{width:100%;margin-top:2px}
+
+.r{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.r.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+@media(max-width:800px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero-content{padding:0 24px}.hero-bar{padding:28px 24px}
+  .stats{grid-template-columns:1fr}.stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);padding:20px 24px}
+  .shows-head,.agenda-head{padding:56px 24px 36px}.shows-head-note{display:none}
+  .shows-grid,.over-layout,.maak,.boeken-layout{grid-template-columns:1fr}
+  .show-item{border-right:none;border-bottom:1px solid rgba(14,12,9,.07)}.show-body{padding:32px 24px 40px}
+  .band{grid-template-columns:1fr 1fr;height:200px}.band figure:last-child{display:none}
+  .coming{padding:48px 24px}
+  .ag-row{padding:18px 24px;grid-template-columns:80px 1fr}.ag-badge{display:none}
+  .over-img{min-height:300px}.over-text{padding:44px 24px}
+  .maak-text{padding:48px 24px;border-left:none;border-top:1px solid rgba(14,12,9,.07)}
+  .req-side{padding:56px 24px;border-right:none;border-bottom:1px solid rgba(14,12,9,.07)}.contact-side{padding:48px 24px 64px}
+  footer{padding:28px 24px}
+  .team-strip{flex-direction:column}.tm{border-right:none;border-bottom:1px solid rgba(255,255,255,.05)}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-brand" href="#">Pappenkost</a>
+  <ul class="nav-links">
+    <li><a href="#voorstellingen">Voorstellingen</a></li>
+    <li><a href="#speeldata">Agenda</a></li>
+    <li><a href="#over">Over</a></li>
+    <li><a href="#boeken">Boeken</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg">
+    <img src="fotos/hero.jpg" alt="Theater Pappenkost — kind met krokodil">
+  </div>
+  <div class="hero-content">
+    <div class="hero-overline r">Theater Pappenkost — Poppenkast op locatie</div>
+    <h1 class="hero-title r d1">Kleine<br><em>verhalen.</em><br>Grote magie.</h1>
+  </div>
+  <div class="hero-bar">
+    <p class="hero-tagline r d2">Zelfgemaakte poppen, sfeervolle muziek, onvergetelijk voor de allerkleinsten — op festivals, scholen en evenementen.</p>
+    <div class="hero-actions r d3">
+      <a href="#boeken" class="btn btn-fill">Boek een voorstelling</a>
+      <a href="#speeldata" class="btn btn-line">Agenda →</a>
+    </div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat r"><div class="stat-n">2</div><div class="stat-l">Voorstellingen beschikbaar</div></div>
+  <div class="stat r d1"><div class="stat-n">5</div><div class="stat-l">Optredens gepland 2025–26</div></div>
+  <div class="stat r d2"><div class="stat-n">1–4</div><div class="stat-l">Jaar — de allerkleinste kijkers</div></div>
+</div>
+
+<section id="voorstellingen">
+  <div class="shows-head">
+    <div>
+      <div class="kicker r">Ons repertoire</div>
+      <h2 class="r d1">De <em>voorstellingen</em></h2>
+    </div>
+    <p class="shows-head-note r d2">Alle poppen zijn met de hand gemaakt door de spelers van het gezelschap.</p>
+  </div>
+  <div class="shows-grid">
+    <div class="show-item r">
+      <div class="show-photo">
+        <img src="fotos/koekemannetje.jpg" alt="Het Koekemannetje">
+        <div class="show-num">01</div>
+      </div>
+      <div class="show-body">
+        <span class="show-tag">Beschikbaar</span>
+        <h3>Het <em>Koekemannetje</em></h3>
+        <div class="chips"><span class="chip">± 8 min</span><span class="chip">1–4 jaar</span><span class="chip">Interactief</span></div>
+        <p>Hij rent, hij springt, hij glipt door je vingers. Een wervelend avontuurtje met veel publiekinteractie — na afloop kunnen kinderen de poppen van dichtbij bekijken.</p>
+      </div>
+    </div>
+    <div class="show-item r d1">
+      <div class="show-photo">
+        <img src="fotos/tinnensoldaatje.jpg" alt="Het Standvastige Tinnen Soldaatje" style="object-position:center center">
+        <div class="show-num">02</div>
+      </div>
+      <div class="show-body">
+        <span class="show-tag">Beschikbaar</span>
+        <h3>Het Standvastige <em>Tinnen Soldaatje</em></h3>
+        <div class="chips"><span class="chip">± 15 min</span><span class="chip">3+ jaar</span><span class="chip">Naar H.C. Andersen</span></div>
+        <p>Eén been. Een groot hart. En een liefde die alles overleeft. Een betoverend verhaal over vriendschap en de kracht van liefde — met rijke decors en handgemaakte poppen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <figure>
+    <img src="fotos/band1.jpg" alt="Krokodil close-up">
+    <div class="band-label">De krokodil</div>
+  </figure>
+  <figure>
+    <img src="fotos/band2.jpg" alt="Kinderen voor de kast">
+    <div class="band-label">Publiek</div>
+  </figure>
+  <figure>
+    <img src="fotos/band3.jpg" alt="Poppenkoppen maakproces">
+    <div class="band-label">Maakproces</div>
+  </figure>
+</div>
+
+<div class="coming">
+  <div>
+    <div class="coming-title">In de maak…</div>
+    <p>Een derde voorstelling is in ontwikkeling. Volg ons op Instagram voor een kijkje achter de schermen — van eerste schetsen tot klaar voor het podium.</p>
+  </div>
+  <div class="coming-links">
+    <a href="https://instagram.com/theaterpappenkost" target="_blank" class="btn btn-line" style="border-color:rgba(212,184,150,.3);color:var(--sand)">→ Instagram</a>
+    <a href="https://facebook.com/theaterpappenkost" target="_blank" class="btn btn-line" style="border-color:rgba(212,184,150,.3);color:var(--sand)">→ Facebook</a>
+  </div>
+</div>
+
+<section id="speeldata">
+  <div class="agenda-head">
+    <div class="kicker r">Kom kijken</div>
+    <h2 class="r d1">Agenda <em>2025–2026</em></h2>
+  </div>
+  <div class="ag-row r"><div><div class="ag-d">27</div><div class="ag-m">April</div></div><div class="ag-info"><h4>Koningsdag — Kampen</h4><p>Binnenstad Kampen · Straattheater</p></div><span class="ag-badge now">Binnenkort</span></div>
+  <div class="ag-row r"><div><div class="ag-d">—</div><div class="ag-m">Mei</div></div><div class="ag-info"><h4>Myosotis — Kampen</h4><p>Kampen · Datum volgt</p></div><span class="ag-badge plan">Gepland</span></div>
+  <div class="ag-row r"><div><div class="ag-d">—</div><div class="ag-m">Zomer</div></div><div class="ag-info"><h4>Straatfestival Genemuiden</h4><p>Genemuiden · Straattheater</p></div><span class="ag-badge plan">Gepland</span></div>
+  <div class="ag-row r"><div><div class="ag-d">—</div><div class="ag-m">Dec</div></div><div class="ag-info"><h4>Kerstfestival Kampen</h4><p>Kampen · Datum volgt</p></div><span class="ag-badge plan">Gepland</span></div>
+  <div class="ag-row r" style="opacity:.38"><div><div class="ag-d">+</div><div class="ag-m">2026</div></div><div class="ag-info"><h4>Meer data in voorbereiding</h4><p>Wil je ons boeken? Neem contact op.</p></div><span class="ag-badge tbd">In overleg</span></div>
+</section>
+
+<section id="over">
+  <div class="over-layout">
+    <div class="over-img r">
+      <img src="fotos/over.jpg" alt="Speler met krokodil op het toneel">
+      <div class="over-caption"><p>"Wij geloven in de kracht van kleine verhalen."</p></div>
+    </div>
+    <div class="over-text r d1">
+      <div class="kicker">Wie zijn wij</div>
+      <h2>Het gezelschap <em>achter de kast</em></h2>
+      <p>Theater Pappenkost is een ensemble van makers en spelers die alles zelf maken — poppen, decors, muziek en geluid. Onze voorstellingen zijn gemaakt voor de <strong>allerkleinste kijkers</strong>: intiem, interactief en vol aandacht voor detail.</p>
+      <p>We spelen op locatie met een eigen theaterkast en tent. Geen zaal nodig — we komen naar jou toe.</p>
+      <p>Een initiatief van <strong>Jolien Beeldendwerk</strong> uit Kampen — beeldend kunstenaar en maker.</p>
+      <a href="https://jolienbeeldendwerk.nl" target="_blank" class="over-link">Jolienbeeldendwerk.nl →</a>
+    </div>
+  </div>
+  <div class="team-strip">
+    <div class="tm"><div class="tm-name">Jolien Former</div><div class="tm-role">Maker & speler</div></div>
+    <div class="tm"><div class="tm-name">Juliet Kalter</div><div class="tm-role">Speler</div></div>
+    <div class="tm"><div class="tm-name">Heleen de Kinkelder</div><div class="tm-role">Speler</div></div>
+    <div class="tm"><div class="tm-name">Maartje de Kinkelder</div><div class="tm-role">Speler</div></div>
+    <div class="tm"><div class="tm-name">Dennis Edelenbosch</div><div class="tm-role">Techniek & geluid</div></div>
+  </div>
+</section>
+
+<div class="maak">
+  <div class="maak-img r">
+    <img src="fotos/maak.jpg" alt="Poppenonderdelen in aanbouw">
+  </div>
+  <div class="maak-text r d1">
+    <div class="kicker">Achter de schermen</div>
+    <h2>Van klei tot <em>podium</em></h2>
+    <p>Elke pop begint als een schets. Dan volgen maanden van modelleren, schilderen, naaien en testen — tot het karakter klaar is voor het podium.</p>
+    <p>We delen het maakproces op Instagram. Van ruwe eerste vormen tot de laatste verfstreek vóór de première.</p>
+    <a href="https://instagram.com/theaterpappenkost" target="_blank">Volg het maakproces →</a>
+  </div>
+</div>
+
+<section id="boeken">
+  <div class="boeken-layout">
+    <div class="req-side">
+      <div class="kicker r">Wat heb je nodig</div>
+      <h2 class="r d1">Praktische <em>info</em></h2>
+      <ul class="req-list">
+        <li class="r"><div class="req-ico">⚡</div><div><strong>Stroompunt</strong>Voor geluid en licht op de locatie.</div></li>
+        <li class="r"><div class="req-ico">⛺</div><div><strong>Overdekte ruimte</strong>Binnenruimte, afdak of eigen theatertent voor buiten.</div></li>
+        <li class="r"><div class="req-ico">📐</div><div><strong>Speelruimte</strong>Circa 3 × 3 meter. Kast: 182 cm breed, 225 cm hoog.</div></li>
+        <li class="r"><div class="req-ico">🚐</div><div><strong>Transport</strong>We rijden zelf — de kast wordt ter plaatse opgebouwd.</div></li>
+        <li class="r"><div class="req-ico">👶</div><div><strong>Leeftijd</strong>Koekemannetje: 1–4 jr. · Tinnen Soldaatje: 3+ jr.</div></li>
+      </ul>
+    </div>
+    <div class="contact-side">
+      <div class="kicker r">Interesse?</div>
+      <h2 class="r d1">Laten we <em>kennismaken</em></h2>
+      <p class="r d2">Op jouw festival, school of evenement? Neem contact op voor beschikbaarheid en tarieven.</p>
+      <a href="mailto:info@pappenkost.nl" class="btn-dark r d2">Stuur een bericht →</a>
+      <div class="soc-grid r d3">
+        <a class="soc-btn" href="https://instagram.com/theaterpappenkost" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
+        <a class="soc-btn" href="https://facebook.com/theaterpappenkost" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</a>
+        <a class="soc-btn" href="https://jolienbeeldendwerk.nl/theater-pappenkost/" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Jolienbeeldendwerk.nl</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-brand">Theater Pappenkost</div>
+  <ul class="foot-nav">
+    <li><a href="#voorstellingen">Voorstellingen</a></li>
+    <li><a href="#speeldata">Agenda</a></li>
+    <li><a href="#over">Over</a></li>
+    <li><a href="https://jolienbeeldendwerk.nl" target="_blank">Jolienbeeldendwerk.nl</a></li>
+  </ul>
+  <div class="foot-copy">© 2025 Theater Pappenkost · Kampen · Een initiatief van Jolien Beeldendwerk</div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.06});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+setTimeout(()=>{document.querySelectorAll('.hero .r,.stats .r').forEach((el,i)=>{setTimeout(()=>el.classList.add('in'),100+i*100)})},60);
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('solid',window.scrollY>50)},{passive:true});
+</script>
+</body>
+</html>
