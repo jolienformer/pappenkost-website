@@ -70,6 +70,22 @@ nav.solid{background:rgba(240,235,225,.95);backdrop-filter:blur(10px);border-col
 .chip{font-size:10px;font-weight:500;letter-spacing:.07em;color:var(--dim);border:1px solid var(--smoke);padding:3px 9px}
 .show-body p{font-size:14px;color:var(--dim);line-height:1.75;font-weight:300}
 
+.featured{display:grid;grid-template-columns:1.15fr 1fr;border-bottom:1px solid rgba(14,12,9,.07);background:var(--paper)}
+.featured-media{position:relative;overflow:hidden;background:var(--dark);min-height:520px}
+.featured-media>img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:contrast(1.05) saturate(.95);transition:transform .7s ease}
+.featured:hover .featured-media>img{transform:scale(1.03)}
+.featured-num{position:absolute;top:22px;left:22px;z-index:2;font-family:var(--fh);font-size:11px;font-weight:900;letter-spacing:.1em;color:rgba(255,255,255,.6);background:rgba(14,12,9,.45);backdrop-filter:blur(4px);padding:4px 12px}
+.featured-body{padding:56px 56px 40px;display:flex;flex-direction:column;justify-content:center;border-left:1px solid rgba(14,12,9,.07)}
+.featured-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;background:var(--rust);color:#fff;padding:5px 12px;margin-bottom:18px;align-self:flex-start}
+.featured-tag::before{content:'';width:6px;height:6px;background:#fff;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.featured-body h3{font-family:var(--fh);font-size:clamp(34px,4vw,52px);font-weight:900;line-height:.98;letter-spacing:-.03em;margin-bottom:14px}
+.featured-body h3 em{font-style:italic;font-weight:300;color:var(--rust)}
+.featured-body>p{font-size:15px;color:var(--dim);line-height:1.75;font-weight:300;margin-bottom:24px;max-width:44ch}
+.featured-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.featured-thumbs img{width:100%;aspect-ratio:1/1;object-fit:cover;filter:contrast(1.05) saturate(.9);transition:filter .3s,transform .5s}
+.featured-thumbs img:hover{filter:none;transform:scale(1.02)}
+
 .band{display:grid;grid-template-columns:5fr 3fr 4fr;height:320px;gap:3px;background:var(--dark)}
 .band figure{margin:0;overflow:hidden;position:relative}
 .band figure img{width:100%;height:100%;object-fit:cover;filter:contrast(1.08) saturate(.85) brightness(.88);transition:transform .65s ease,filter .4s}
@@ -168,7 +184,9 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
   .hero-content{padding:0 24px}.hero-bar{padding:28px 24px}
   .stats{grid-template-columns:1fr}.stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);padding:20px 24px}
   .shows-head,.agenda-head{padding:56px 24px 36px}.shows-head-note{display:none}
-  .shows-grid,.over-layout,.maak,.boeken-layout{grid-template-columns:1fr}
+  .shows-grid,.over-layout,.maak,.boeken-layout,.featured{grid-template-columns:1fr}
+  .featured-media{min-height:340px}
+  .featured-body{padding:36px 24px 44px;border-left:none;border-top:1px solid rgba(14,12,9,.07)}
   .show-item{border-right:none;border-bottom:1px solid rgba(14,12,9,.07)}.show-body{padding:32px 24px 40px}
   .band{grid-template-columns:1fr 1fr;height:200px}.band figure:last-child{display:none}
   .coming{padding:48px 24px}
@@ -187,7 +205,6 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
   <a class="nav-brand" href="#">Pappenkost</a>
   <ul class="nav-links">
     <li><a href="#voorstellingen">Voorstellingen</a></li>
-    <li><a href="#speeldata">Agenda</a></li>
     <li><a href="#over">Over</a></li>
     <li><a href="#boeken">Boeken</a></li>
   </ul>
@@ -205,14 +222,14 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
     <p class="hero-tagline r d2">Zelfgemaakte poppen, sfeervolle muziek, onvergetelijk voor jong en oud. Op festivals, scholen en evenementen.</p>
     <div class="hero-actions r d3">
       <a href="#boeken" class="btn btn-fill">Boek een voorstelling</a>
-      <a href="#speeldata" class="btn btn-line">Agenda →</a>
+      <a href="#voorstellingen" class="btn btn-line">Voorstellingen →</a>
     </div>
   </div>
 </div>
 
 <div class="stats">
-  <div class="stat r"><div class="stat-n">2</div><div class="stat-l">Voorstellingen beschikbaar</div></div>
-  <div class="stat r d1"><div class="stat-n">3</div><div class="stat-l">Optredens gepland 2026</div></div>
+  <div class="stat r"><div class="stat-n">3</div><div class="stat-l">Voorstellingen beschikbaar</div></div>
+  <div class="stat r d1"><div class="stat-n">1</div><div class="stat-l">Eigen theatertent</div></div>
   <div class="stat r d2"><div class="stat-n">∞</div><div class="stat-l">Alle leeftijden, jong en oud</div></div>
 </div>
 
@@ -224,11 +241,28 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
     </div>
     <p class="shows-head-note r d2">Alle poppen zijn met de hand gemaakt door de spelers van het gezelschap.</p>
   </div>
+  <article class="featured r">
+    <div class="featured-media">
+      <img src="fotos/tik-hero.jpg" alt="Tik het robotje met het ei op de speelrand">
+      <div class="featured-num">01 · Nieuw</div>
+    </div>
+    <div class="featured-body">
+      <span class="featured-tag">Nieuw · Première 2026</span>
+      <h3>Tik en het <em>ei</em></h3>
+      <div class="chips"><span class="chip">± 10 min</span><span class="chip">Kleuters 2–6 jr</span><span class="chip">Sprookje</span></div>
+      <p>Tik is een klein robotje met een groot hart. Op een dag vindt hij een bijzonder ei. Maar hij is niet de enige die het gezien heeft: de vos, de kat, de rat én de haan willen het allemaal hebben. Een warm sprookje voor de allerkleinsten, over zorgen voor iets kwetsbaars en dat je samen sterker bent dan alleen.</p>
+      <div class="featured-thumbs">
+        <img src="fotos/tik-robot-vogel.jpg" alt="Tik met een groen vogeltje op de speelrand">
+        <img src="fotos/tik-vogel-kat.jpg" alt="Tik en de vogel tegenover de kat">
+        <img src="fotos/tik-dieren.jpg" alt="De vos, rat, kat en haan op een rij">
+      </div>
+    </div>
+  </article>
   <div class="shows-grid">
     <div class="show-item r">
       <div class="show-photo">
         <img src="fotos/koekemannetje.jpg" alt="Het Koekemannetje">
-        <div class="show-num">01</div>
+        <div class="show-num">02</div>
       </div>
       <div class="show-body">
         <span class="show-tag">Beschikbaar</span>
@@ -240,7 +274,7 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
     <div class="show-item r d1">
       <div class="show-photo">
         <img src="fotos/tinnensoldaatje.jpg" alt="Het Standvastige Tinnen Soldaatje" style="object-position:center center">
-        <div class="show-num">02</div>
+        <div class="show-num">03</div>
       </div>
       <div class="show-body">
         <span class="show-tag">Beschikbaar</span>
@@ -266,27 +300,6 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
     <div class="band-label">Maakproces</div>
   </figure>
 </div>
-
-<div class="coming">
-  <div>
-    <div class="coming-title">In de maak…</div>
-    <p>Een derde voorstelling is in ontwikkeling. Volg ons op Instagram voor een kijkje achter de schermen: van eerste schetsen tot klaar voor het podium.</p>
-  </div>
-  <div class="coming-links">
-    <a href="https://instagram.com/theaterpappenkost" target="_blank" class="btn btn-line" style="border-color:rgba(212,184,150,.3);color:var(--sand)">→ Instagram</a>
-    <a href="https://facebook.com/theaterpappenkost" target="_blank" class="btn btn-line" style="border-color:rgba(212,184,150,.3);color:var(--sand)">→ Facebook</a>
-  </div>
-</div>
-
-<section id="speeldata">
-  <div class="agenda-head">
-    <div class="kicker r">Kom kijken</div>
-    <h2 class="r d1">Agenda <em>2025/2026</em></h2>
-  </div>
-  <div class="ag-row r"><div><div class="ag-d">9-10</div><div class="ag-m">Mei</div></div><div class="ag-info"><h4>Skandi Fest · Schokland</h4><p>Museum Schokland · Twee dagen spelen</p></div><span class="ag-badge now">Binnenkort</span></div>
-  <div class="ag-row r"><div><div class="ag-d">19-20</div><div class="ag-m">Dec</div></div><div class="ag-info"><h4>Kerst in Oud Kampen</h4><p>Kampen · Straattheater</p></div><span class="ag-badge plan">Gepland</span></div>
-  <div class="ag-row r" style="opacity:.38"><div><div class="ag-d">+</div><div class="ag-m">2026</div></div><div class="ag-info"><h4>Meer data in voorbereiding</h4><p>Wil je ons boeken? Neem contact op.</p></div><span class="ag-badge tbd">In overleg</span></div>
-</section>
 
 <section id="over">
   <div class="over-layout">
@@ -346,7 +359,7 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
         <li class="r"><div class="req-ico"><img src="fotos/icons/Overdekt.png" alt=""></div><div><strong>Overdekte ruimte</strong>Wij brengen onze eigen theatertent mee. Buiten spelen kan altijd, ook bij regen.</div></li>
         <li class="r"><div class="req-ico"><img src="fotos/icons/Afmetingen.png" alt=""></div><div><strong>Speelruimte</strong>Circa 3 × 3 meter. Kast: 182 cm breed, 225 cm hoog.</div></li>
         <li class="r"><div class="req-ico"><img src="fotos/icons/Vervoer.png" alt=""></div><div><strong>Transport</strong>We rijden zelf, de kast wordt ter plaatse opgebouwd.</div></li>
-        <li class="r"><div class="req-ico"><img src="fotos/icons/Leeftijd.png" alt=""></div><div><strong>Leeftijd</strong>Beide voorstellingen voor alle leeftijden, jong en oud.</div></li>
+        <li class="r"><div class="req-ico"><img src="fotos/icons/Leeftijd.png" alt=""></div><div><strong>Leeftijd</strong>Koekemannetje en Tinnen Soldaatje voor alle leeftijden. Tik en het ei voor kleuters (2–6 jaar).</div></li>
       </ul>
     </div>
     <div class="contact-side">
@@ -367,8 +380,8 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
   <div class="foot-brand">Theater Pappenkost</div>
   <ul class="foot-nav">
     <li><a href="#voorstellingen">Voorstellingen</a></li>
-    <li><a href="#speeldata">Agenda</a></li>
     <li><a href="#over">Over</a></li>
+    <li><a href="#boeken">Boeken</a></li>
     <li><a href="https://jolienbeeldendwerk.nl" target="_blank">Jolienbeeldendwerk.nl</a></li>
   </ul>
   <div class="foot-copy">© 2026 Theater Pappenkost · Kampen</div>
