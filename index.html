@@ -179,6 +179,28 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
 .r.in{opacity:1;transform:none}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
 
+/* STOM, schoolvoorstelling Kampen */
+#stom{border-top:1px solid rgba(14,12,9,.07)}
+#stom .featured-media>img{object-position:center 30%}
+.stom-sub{font-family:var(--fh);font-style:italic;font-weight:300;font-size:20px;color:var(--rust);margin:-6px 0 16px}
+.stom-places{margin:4px 0 20px}
+.places{display:flex;flex-wrap:wrap;gap:6px}
+.places span{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--ink);background:var(--bg);border:1px solid var(--sand);padding:6px 12px}
+.stom-note{font-size:13px;color:var(--ink);line-height:1.7;border-left:2px solid var(--rust);padding-left:14px;margin-bottom:24px;max-width:46ch}
+.stom-cast{padding:64px 56px 72px;background:var(--bg)}
+.stom-cast h3{font-family:var(--fh);font-size:32px;font-weight:900;letter-spacing:-.02em;margin-bottom:32px}
+.stom-cast h3 em{font-style:italic;font-weight:300;color:var(--rust)}
+.cast-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 40px}
+.cast{display:flex;gap:18px;align-items:center}
+.cast img{width:96px;height:96px;object-fit:contain;flex-shrink:0}
+.cast strong{display:block;font-family:var(--fh);font-size:17px;font-weight:900;margin-bottom:4px}
+.cast p{font-size:13px;color:var(--dim);line-height:1.6;font-weight:300}
+.stom-info{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(14,12,9,.07);background:var(--paper)}
+.stom-info div{padding:28px 32px;border-right:1px solid rgba(14,12,9,.07);font-size:13px;color:var(--dim);line-height:1.6;font-weight:300}
+.stom-info div:last-child{border-right:none}
+.stom-info strong{display:block;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+.stom-thanks{padding:22px 56px;font-size:12px;color:var(--dim);font-style:italic;background:var(--paper);border-top:1px solid rgba(14,12,9,.07)}
+
 @media(max-width:800px){
   nav{padding:0 20px}.nav-links{display:none}
   .hero-content{padding:0 24px}.hero-bar{padding:28px 24px}
@@ -196,6 +218,9 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
   .req-side{padding:56px 24px;border-right:none;border-bottom:1px solid rgba(14,12,9,.07)}.contact-side{padding:48px 24px 64px}
   footer{padding:28px 24px}
   .team-strip{flex-direction:column}.tm{border-right:none;border-bottom:1px solid rgba(255,255,255,.05)}
+  .stom-cast{padding:48px 24px 56px}.cast-grid{grid-template-columns:1fr;gap:24px}.cast img{width:80px;height:80px}
+  .stom-info{grid-template-columns:1fr 1fr}.stom-info div{padding:22px 24px;border-bottom:1px solid rgba(14,12,9,.07)}
+  .stom-thanks{padding:22px 24px}
 }
 </style>
 </head>
@@ -286,6 +311,48 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
   </div>
 </section>
 
+<section id="stom">
+  <article class="featured r">
+    <div class="featured-media">
+      <img src="fotos/stom-voorkant.jpg" alt="Voorkant van de flyer van STOM: het silhouet van Hendrick Avercamp die zit te tekenen op roze-blauw ijs">
+      <div class="featured-num">Nieuw · Op locatie in Kampen</div>
+    </div>
+    <div class="featured-body">
+      <span class="featured-tag">Nieuw · Vanaf december 2026</span>
+      <h3>STOM</h3>
+      <div class="stom-sub">Dol op de winter</div>
+      <div class="chips"><span class="chip">± 20 min + nagesprek</span><span class="chip">Groep 1 t/m 8 én jong en oud</span><span class="chip">Over Hendrick Avercamp</span></div>
+      <p>Maike is dol op de winter. Op sneeuw, op ijs, op kale bomen. Iedereen vindt dat maar raar. Dan droomt ze zich naar het Kampen van vierhonderd jaar geleden. Daar ontmoet ze een jongen die niet kan horen of praten, maar wel prachtig kan tekenen: Hendrick Avercamp.</p>
+      <p>Een poppenkastverhaal over goed kijken, over anders zijn, en over hoe je met kunst iets voor altijd kunt bewaren.</p>
+      <div class="stom-places">
+        <div class="kicker">We spelen STOM bij jou in Kampen</div>
+        <div class="places"><span>Basisscholen</span><span>Bibliotheken</span><span>Buurthuizen</span><span>Verzorgingshuizen</span><span>Culturele plekken</span></div>
+      </div>
+      <div class="stom-note">Een winterverhaal dat jong en oud samenbrengt: kinderen in de klas, buurtgenoten in het buurthuis, opa's en oma's die zelf nog op natuurijs hebben geschaatst. Waar we spelen maakt niet uit, als er maar kinderen bij zijn. De eerste 15 voorstellingen (december 2026 t/m december 2027) zijn zonder kosten. Wees er dus op tijd bij! Daarna spelen we STOM graag tegen een vergoeding.</div>
+      <a href="mailto:info@jolienbeeldendwerk.nl?subject=STOM%20boeken" class="btn-dark" style="align-self:flex-start">Boek STOM →</a>
+    </div>
+  </article>
+  <div class="stom-cast">
+    <div class="kicker r">Even voorstellen</div>
+    <h3 class="r d1">Wie kom je <em>tegen op het ijs?</em></h3>
+    <div class="cast-grid">
+      <div class="cast r"><img src="fotos/stom-carel.png" alt="Pop Carel met hoed en witte kraag"><div><strong>Carel</strong><p>Trekt zijn allermooiste kleren aan om te gaan schaatsen. Dat bleek achteraf niet zo'n goed idee…</p></div></div>
+      <div class="cast r d1"><img src="fotos/stom-hotemetoot.png" alt="Pop mevrouw Hotemetoot met witte kap"><div><strong>Mevrouw Hotemetoot</strong><p>Weet precies hoe alles hoort. Tenminste, dat denkt ze zelf. En dat vertelt ze graag aan iedereen.</p></div></div>
+      <div class="cast r d2"><img src="fotos/stom-buurman.png" alt="Pop de buurman met baard en muts"><div><strong>De buurman</strong><p>Heeft een grote baard en een nog groter hart. Hij gelooft als enige dat je de winter echt kunt bewaren.</p></div></div>
+      <div class="cast r"><img src="fotos/stom-dora.png" alt="Pop Dora met grijs haar en sjaal"><div><strong>Dora</strong><p>Zegt in de hele voorstelling geen woord. Toch snap je precies wat ze bedoelt.</p></div></div>
+      <div class="cast r d1"><img src="fotos/stom-rob.png" alt="Pop Rob met muts en gele kraag"><div><strong>Rob</strong><p>Vindt alles stom: sneeuw, ijs, tekenen, gewoon alles. En hij heeft voor iedereen een compliment klaar: "Jij hebt een lelijke kop!"</p></div></div>
+      <div class="cast r d2"><img src="fotos/stom-ferdinand.png" alt="Pop Ferdinand met witte baard"><div><strong>Ferdinand</strong><p>Komt met zijn slee als een speer over het ijs. Remmen? Daar heeft hij nog nooit van gehoord.</p></div></div>
+    </div>
+  </div>
+  <div class="stom-info">
+    <div><strong>Voor wie</strong>Kinderen van groep 1 t/m 8, op school of samen met (groot)ouders en buurtgenoten in de bieb, het buurthuis of het verzorgingshuis</div>
+    <div><strong>Duur</strong>Ongeveer 20 minuten, daarna 20 minuten nagesprek en de poppen bekijken</div>
+    <div><strong>Ruimte</strong>Aula, gymzaal, bibliotheek, recreatiezaal of buurthuis, met een stopcontact in de buurt</div>
+    <div><strong>Voor scholen</strong>Een lesbrief met vragen, tekenopdrachten en ideeën om in de klas verder te gaan</div>
+  </div>
+  <div class="stom-thanks">Mogelijk gemaakt door CAS Kampen, Kunst en Kind Kampen en het Cultuurfonds gemeente Kampen. Wil je ons helpen nog meer scholen en plekken in de buurt te bereiken? Een vrijwillige bijdrage is van harte welkom.</div>
+</section>
+
 <div class="band">
   <figure>
     <img src="fotos/band1.jpg" alt="Krokodil close-up">
@@ -366,7 +433,7 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
       <div class="kicker r">Interesse?</div>
       <h2 class="r d1">Laten we <em>kennismaken</em></h2>
       <p class="r d2">Op jouw festival, school of evenement? Neem contact op voor beschikbaarheid en tarieven.</p>
-      <a href="mailto:info@pappenkost.nl" class="btn-dark r d2">Stuur een bericht →</a>
+      <a href="mailto:info@jolienbeeldendwerk.nl" class="btn-dark r d2">Stuur een bericht →</a>
       <div class="soc-grid r d3">
         <a class="soc-btn" href="https://instagram.com/theaterpappenkost" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
         <a class="soc-btn" href="https://facebook.com/theaterpappenkost" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</a>
