@@ -203,6 +203,10 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
 .stom-credits div{padding:24px 32px;border-right:1px solid rgba(255,255,255,.08);font-family:var(--fh);font-size:17px;font-weight:900}
 .stom-credits div:last-child{border-right:none}
 .stom-credits strong{display:block;font-family:var(--fb);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);margin-bottom:6px}
+.stom-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-ghost{border:1px solid var(--ink);color:var(--ink);padding:15px 24px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .18s}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.stom-flyer-note{font-size:12px;color:var(--dim);font-weight:300;margin-top:12px}
 .stom-thanks{padding:22px 56px;font-size:12px;color:var(--dim);font-style:italic;background:var(--paper);border-top:1px solid rgba(14,12,9,.07)}
 
 @media(max-width:800px){
@@ -334,7 +338,11 @@ footer{background:var(--ink);color:rgba(248,244,238,.22);padding:36px 52px;displ
         <div class="places"><span>Basisscholen</span><span>Bibliotheken</span><span>Buurthuizen</span><span>Verzorgingshuizen</span><span>Culturele plekken</span></div>
       </div>
       <div class="stom-note">Een winterverhaal dat jong en oud samenbrengt: kinderen in de klas, buurtgenoten in het buurthuis, opa's en oma's die zelf nog op natuurijs hebben geschaatst. Waar we spelen maakt niet uit, als er maar kinderen bij zijn. De eerste 15 voorstellingen (december 2026 t/m december 2027) zijn zonder kosten. Wees er dus op tijd bij! Daarna spelen we STOM graag tegen een vergoeding.</div>
-      <a href="mailto:info@jolienbeeldendwerk.nl?subject=STOM%20boeken" class="btn-dark" style="align-self:flex-start">Boek STOM →</a>
+      <div class="stom-btns">
+        <a href="mailto:info@jolienbeeldendwerk.nl?subject=STOM%20boeken" class="btn-dark">Boek STOM →</a>
+        <a href="downloads/Flyer_STOM.pdf" download class="btn-ghost"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download de flyer (PDF)</a>
+      </div>
+      <p class="stom-flyer-note">Printbaar, met meer over het project, de lesbrief en hoe je boekt.</p>
     </div>
   </article>
   <div class="stom-cast">
